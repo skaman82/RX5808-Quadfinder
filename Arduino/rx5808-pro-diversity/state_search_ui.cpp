@@ -329,6 +329,7 @@ if (AlarmState == HIGH) {
       display.print("LOW");
       display.setCursor(75, 32);
       display.print("BATTERY");
+      display.drawRect(42, 2, 2, 3, WHITE);
       }      
       
    }
