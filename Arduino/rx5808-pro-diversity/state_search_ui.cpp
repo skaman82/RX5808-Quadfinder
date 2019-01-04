@@ -60,8 +60,8 @@ uint16_t rssiARaw = 0;
     #define RX_TEXT_A_Y ((GRAPH_A_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
     #define RX_TEXT_B_Y ((GRAPH_B_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
 #else
-    #define GRAPH_H (SCREEN_HEIGHT - 1)
-    #define GRAPH_Y 0
+    #define GRAPH_H (SCREEN_HEIGHT - 16) //was -1
+    #define GRAPH_Y 15 // was 0
     #define GRAPH_B_Y 0
 #endif
 
@@ -99,14 +99,14 @@ void beacon() {
     //beacon Stuff
     unsigned long beaconcurrenttime = millis();
     
-    int delaytime = ((100 - rssiA) * 50);
+    int delaytime = ((103 - rssiA) * 50);
     //Serial.println (delaytime);
     
     if (beaconcurrenttime - beaconspendtime >= delaytime) {
       beaconspendtime = beaconcurrenttime;
       
         digitalWrite(13, HIGH); //LED green
-        //digitalWrite(6, LOW); //buzzerer
+        digitalWrite(6, LOW); //buzzerer
        
       }
      else {
@@ -157,6 +157,13 @@ void beacon() {
       SCANBAR_Y,
       SCANBAR_W,
       SCANBAR_H
+    );
+
+        Ui::clearRect( // update the rssi text
+      60,
+      0,
+      64,
+      15
     );
 
     drawChannelText();
@@ -319,9 +326,9 @@ void beacon() {
 
     display.setTextSize(1);
     display.setTextColor(WHITE);
-    display.setCursor(85, 45);
+    display.setCursor(85, 40);
     display.print("LOW");
-    display.setCursor(75, 55);
+    display.setCursor(75, 50);
     display.print("BATTERY");
    }
    
@@ -334,10 +341,10 @@ void beacon() {
 
    
     // voltage on oled for debugging
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(80, 20);
-    display.println(voltage);
+    // display.setTextSize(1);
+    // display.setTextColor(WHITE);
+    // display.setCursor(80, 20);
+    // display.println(voltage);
     
 
   }
