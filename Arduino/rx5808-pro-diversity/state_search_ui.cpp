@@ -8,7 +8,7 @@
 
 int alarms = 0;
 int AlarmState = LOW;
-long alarminterval = 500;
+long alarminterval = 1000;
 unsigned long spendtime = 0;
 unsigned long beaconspendtime = 0;
 unsigned long pingspendtime = 0;
@@ -84,9 +84,8 @@ void alarmcheck() {
         AlarmState = LOW;
       }
 
-      // digitalWrite(6, AlarmState);
-      digitalWrite(13, AlarmState);
-
+      digitalWrite(6, AlarmState);
+      digitalWrite(8, AlarmState);
     }
 
   }
@@ -107,7 +106,7 @@ void beacon() {
       
         digitalWrite(13, HIGH); //LED green
         digitalWrite(6, LOW); //buzzerer
-       
+   
       }
      else {
             digitalWrite(13, LOW);
@@ -324,12 +323,17 @@ void beacon() {
    else if (voltage <= 3.35) {
    alarms = 1;
 
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(85, 40);
-    display.print("LOW");
-    display.setCursor(75, 50);
-    display.print("BATTERY");
+
+
+if (AlarmState == HIGH) {
+      display.setTextSize(1);
+      display.setTextColor(WHITE);
+      display.setCursor(85, 20);
+      display.print("LOW");
+      display.setCursor(75, 32);
+      display.print("BATTERY");
+      }      
+      
    }
    
    else {
