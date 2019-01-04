@@ -15,6 +15,46 @@
 using StateMachine::SearchStateHandler;
 
 
+const unsigned char PingOnIcon[] PROGMEM = {
+  0x00,0x00,
+  0x00,0x00,
+  0x00,0x00,
+  0x04,0x60,
+  0x09,0x70,
+  0x12,0x78,
+  0x14,0x7E,
+  0x25,0x7E,
+  0x25,0x7E,
+  0x14,0x7E,
+  0x12,0x78,
+  0x09,0x70,
+  0x04,0x60,
+  0x00,0x00,
+  0x00,0x00,
+  0x00,0x00 
+};
+
+
+
+const unsigned char PingOffIcon[] PROGMEM = {
+  0x00,0x00,
+  0x00,0x00,
+  0x00,0x00,
+  0x00,0x60,
+  0x00,0x70,
+  0x00,0x78,
+  0x12,0x7E,
+  0x0C,0x7E,
+  0x0C,0x7E,
+  0x12,0x7E,
+  0x00,0x78,
+  0x00,0x70,
+  0x00,0x60,
+  0x00,0x00,
+  0x00,0x00,
+  0x00,0x00 
+};
+
 const unsigned char autoIcon[] PROGMEM = {
     0x00, 0x00, 0x1E, 0x00, 0x3F, 0x00, 0x73, 0x80, 0x61, 0x98, 0x7F, 0x84, 0x7F, 0x82, 0x61, 0x82,
     0x61, 0x80, 0x61, 0x80, 0x61, 0xA2, 0x08, 0x36, 0x08, 0x2A, 0x04, 0x22, 0x03, 0x22, 0x00, 0x00
@@ -36,6 +76,11 @@ const unsigned char freqOrderIcon[] PROGMEM = {
 };
 
 
+static const unsigned char* menuBuzzerIcon(void* state) {
+    SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
+    return search->manual ? PingOffIcon : PingOnIcon;
+}
+
 static const unsigned char* menuModeIcon(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
     return search->manual ? manualIcon : autoIcon;
@@ -54,9 +99,19 @@ static const unsigned char* menuOrderIcon(void* state) {
     }
 }
 
+static void menuBuzzerHandler(void* state) {
+    SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
+    
+
+    EepromSettings.searchManual = search->manual;
+    EepromSettings.markDirty();
+}
+
+
 static void menuModeHandler(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
     search->manual = !search->manual;
+    
 
     EepromSettings.searchManual = search->manual;
     EepromSettings.markDirty();
@@ -81,6 +136,7 @@ static void menuOrderHandler(void* state) {
 
 
 void SearchStateHandler::onEnter() {
+    menu.addItem(menuBuzzerIcon, menuBuzzerHandler);
     menu.addItem(menuModeIcon, menuModeHandler);
     menu.addItem(menuOrderIcon, menuOrderHandler);
 

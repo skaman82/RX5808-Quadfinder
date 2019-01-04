@@ -6,6 +6,7 @@
 #include "pstr_helper.h"
 #include "settings_eeprom.h"
 
+int ping;
 int alarms = 0;
 int AlarmState = LOW;
 long alarminterval = 500;
@@ -84,7 +85,7 @@ void alarmcheck() {
         AlarmState = LOW;
       }
 
-      digitalWrite(6, AlarmState);
+      // digitalWrite(6, AlarmState);
       digitalWrite(8, AlarmState);
     }
 
@@ -93,7 +94,9 @@ void alarmcheck() {
 }
 
 void beacon() {
-    //beacon Stuff
+    if (ping == 1) {
+
+    
     unsigned long beaconcurrenttime = millis();
     
     int delaytime = ((103 - rssiA) * 50);
@@ -114,8 +117,7 @@ void beacon() {
             }
            }  
   }
-  
-
+}
 
 
 
