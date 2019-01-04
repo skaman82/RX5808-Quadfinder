@@ -8,7 +8,7 @@
 
 int alarms = 0;
 int AlarmState = LOW;
-long alarminterval = 1000;
+long alarminterval = 500;
 unsigned long spendtime = 0;
 unsigned long beaconspendtime = 0;
 unsigned long pingspendtime = 0;
@@ -35,7 +35,7 @@ uint16_t rssiARaw = 0;
 
 #define SCANBAR_BORDER_X 0
 #define SCANBAR_BORDER_Y (CHANNEL_TEXT_H + 21)
-#define SCANBAR_BORDER_W (BORDER_GRAPH_L_X - 2)
+#define SCANBAR_BORDER_W (BORDER_GRAPH_L_X - 3)
 #define SCANBAR_BORDER_H 7
 
 #define SCANBAR_X (SCANBAR_BORDER_X + 2)
@@ -93,8 +93,6 @@ void alarmcheck() {
 }
 
 void beacon() {
-  
- 
     //beacon Stuff
     unsigned long beaconcurrenttime = millis();
     
@@ -104,21 +102,20 @@ void beacon() {
     if (beaconcurrenttime - beaconspendtime >= delaytime) {
       beaconspendtime = beaconcurrenttime;
       
-        digitalWrite(13, HIGH); //LED green
-        digitalWrite(6, LOW); //buzzerer
-   
+          digitalWrite(13, HIGH); //LED green
+          if (alarms == 0) { 
+          digitalWrite(6, LOW); //buzzerer
+          }
       }
      else {
             digitalWrite(13, LOW);
+            if (alarms == 0) { 
             digitalWrite(6, HIGH);
             }
-
+           }  
+  }
   
 
-    
-
-  
-}
 
 
 
