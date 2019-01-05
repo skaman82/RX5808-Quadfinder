@@ -101,7 +101,7 @@ static const unsigned char* menuOrderIcon(void* state) {
 
 static void menuBuzzerHandler(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
-  	search->beepEnabled != search->beepEnabled;
+  	search->beepEnabled = !search->beepEnabled;
 
     EepromSettings.beepEnabled = search->beepEnabled;
     EepromSettings.markDirty();
