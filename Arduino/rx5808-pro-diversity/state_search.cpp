@@ -31,7 +31,7 @@ const unsigned char PingOnIcon[] PROGMEM = {
   0x04,0x60,
   0x00,0x00,
   0x00,0x00,
-  0x00,0x00 
+  0x00,0x00
 };
 
 
@@ -52,7 +52,7 @@ const unsigned char PingOffIcon[] PROGMEM = {
   0x00,0x60,
   0x00,0x00,
   0x00,0x00,
-  0x00,0x00 
+  0x00,0x00
 };
 
 const unsigned char autoIcon[] PROGMEM = {
@@ -78,7 +78,7 @@ const unsigned char freqOrderIcon[] PROGMEM = {
 
 static const unsigned char* menuBuzzerIcon(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
-    return search->manual ? PingOffIcon : PingOnIcon;
+    return search->beepEnabled ? PingOnIcon : PingOffIcon;
 }
 
 static const unsigned char* menuModeIcon(void* state) {
@@ -101,9 +101,9 @@ static const unsigned char* menuOrderIcon(void* state) {
 
 static void menuBuzzerHandler(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
-    
+  	search->beepEnabled = !search->beepEnabled;
 
-    EepromSettings.searchManual = search->manual;
+    EepromSettings.beepEnabled = search->beepEnabled;
     EepromSettings.markDirty();
 }
 
@@ -111,7 +111,7 @@ static void menuBuzzerHandler(void* state) {
 static void menuModeHandler(void* state) {
     SearchStateHandler* search = static_cast<SearchStateHandler*>(state);
     search->manual = !search->manual;
-    
+
 
     EepromSettings.searchManual = search->manual;
     EepromSettings.markDirty();
@@ -140,6 +140,7 @@ void SearchStateHandler::onEnter() {
     menu.addItem(menuModeIcon, menuModeHandler);
     menu.addItem(menuOrderIcon, menuOrderHandler);
 
+	this->beepEnabled = EepromSettings.beepEnabled;
     this->manual = EepromSettings.searchManual;
     this->order = EepromSettings.searchOrderByChannel ?
         ScanOrder::CHANNEL :
