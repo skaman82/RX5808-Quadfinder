@@ -21,7 +21,7 @@ int32_t samplevoltage = 0;
 uint8_t rssiA = 0;
 uint16_t rssiARaw = 0;
 
-    
+
 #define BORDER_GRAPH_L_X 59
 
 #define CHANNEL_TEXT_SIZE 5
@@ -69,7 +69,7 @@ uint16_t rssiARaw = 0;
 using Ui::display;
 
 
-void alarmcheck() {
+void StateMachine::SearchStateHandler::alarmcheck() {
   if (alarms == 1)
   {
     //Buzzer Stuff
@@ -93,29 +93,29 @@ void alarmcheck() {
   else alarms = 0;
 }
 
-void beacon() {
-    if (ping == 1) {
+void StateMachine::SearchStateHandler::beacon() {
+    if (this->beepEnabled) {
 
-    
+
     unsigned long beaconcurrenttime = millis();
-    
+
     int delaytime = ((103 - rssiA) * 50);
     //Serial.println (delaytime);
-    
+
     if (beaconcurrenttime - beaconspendtime >= delaytime) {
       beaconspendtime = beaconcurrenttime;
-      
+
           digitalWrite(13, HIGH); //LED green
-          if (alarms == 0) { 
+          if (alarms == 0) {
           digitalWrite(6, LOW); //buzzerer
           }
       }
      else {
             digitalWrite(13, LOW);
-            if (alarms == 0) { 
+            if (alarms == 0) {
             digitalWrite(6, HIGH);
             }
-           }  
+           }
   }
 }
 
@@ -201,9 +201,9 @@ void beacon() {
 
 
 
-    
 
-    
+
+
   }
 
   void StateMachine::SearchStateHandler::drawFrequencyText() {
@@ -238,11 +238,11 @@ void beacon() {
       GRAPH_H
     );
 
-  
+
     analogRead(A6); // Fake read to let ADC settle.
     rssiARaw = analogRead(A6);
-    
-  
+
+
 
      rssiA = constrain(
             map(
@@ -259,8 +259,8 @@ void beacon() {
     display.setCursor(75, 0);
     display.print("RSSI ");
     display.print(rssiA);
-    
-    
+
+
     beacon();
 
 
@@ -273,10 +273,10 @@ void beacon() {
     if (currentrunthtime - updatetime >= 100) {
       updatetime = currentrunthtime;
       counter += 1;
-      samplevoltage += sensorValue; 
+      samplevoltage += sensorValue;
     }
-    
-    if (counter >= 10) {   // if we have 10 samples            
+
+    if (counter >= 10) {   // if we have 10 samples
           oldvoltage = (samplevoltage / 10);
           samplevoltage = 0;
           counter = 0;
@@ -284,15 +284,15 @@ void beacon() {
 
     voltage = oldvoltage * (5.25 / 1023.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage:
 
-    
+
    display.drawRect(40, 0, 15, 7, WHITE);
    display.drawRect(39, 2, 1, 3, WHITE);
-   
+
    if (voltage > 4.25) {
       voltage = 0;
       alarms = 0;
    }
-   
+
    else if (voltage >= 4.00) {
    display.drawRect(42, 2, 2, 3, WHITE);
    display.drawRect(45, 2, 2, 3, WHITE);
@@ -332,24 +332,24 @@ if (AlarmState == HIGH) {
       display.setCursor(75, 32);
       display.print("BATTERY");
       display.drawRect(42, 2, 2, 3, WHITE);
-      }      
-      
+      }
+
    }
-   
+
    else {
      alarms = 0;
      }
-  
+
 
     alarmcheck();
 
-   
+
     // voltage on oled for debugging
     // display.setTextSize(1);
     // display.setTextColor(WHITE);
     // display.setCursor(80, 20);
     // display.println(voltage);
-    
+
 
   }
 

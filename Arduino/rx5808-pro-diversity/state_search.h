@@ -40,6 +40,9 @@ namespace StateMachine {
 
             void setChannel();
 
+			void beacon();
+			void alarmcheck();
+
         public:
             enum class ScanOrder : uint8_t {
                 FREQUENCY,
@@ -50,6 +53,8 @@ namespace StateMachine {
             bool manual = false;
             ScanOrder order = ScanOrder::FREQUENCY;
             uint8_t orderedChanelIndex = 0;
+
+			bool beepEnabled = false;
 
             void onEnter();
             void onUpdate();
