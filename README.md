@@ -30,6 +30,6 @@ JST-SH 6pin socket<br>
 100k 0603 Resistor (R4)<br>
 100nF 0603 cap (C1)<br>
 10uF 1206 tantalum cap (c2) - optional, bridge otherwise.<br>
-Mini slide switch: <a href="https://de.aliexpress.com/item/20-st-cke-MSS22D18-Mini-DIP-Schiebeschalter-1P2T-3Pin-f-r-DIY-Elektronische-Zubeh-r-Mikroschalter/32859694454.html?spm=a2g0s.9042311.0.0.27424c4ddocSic">Link</a><br>
-500mAh Lipo charger: https://www.banggood.com/Lantian-1S-3_7V-4_2V-0_4A-Android-Micro-USB-Lipo-Battery-Charger-Board-Module-for-FPV-RC-Drone-p-1347517.html?p=03160313547712015036<br>
+Mini slide switch: <a href="https://de.aliexpress.com/item/20-st-cke-MSS22D18-Mini-DIP-Schiebeschalter-1P2T-3Pin-f-r-DIY-Elektronische-Zubeh-r-Mikroschalter/32859694454.html?spm=a2g0s.9042311.0.0.27424c4ddocSic">Link ></a><br>
+500mAh Lipo charger: <a href="https://www.banggood.com/Lantian-1S-3_7V-4_2V-0_4A-Android-Micro-USB-Lipo-Battery-Charger-Board-Module-for-FPV-RC-Drone-p-1347517.html?p=03160313547712015036">Link ></a><br>
 4x M3 brass inserts and 4x M3 screws<br>
