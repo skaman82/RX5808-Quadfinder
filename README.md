@@ -19,11 +19,12 @@ Changes to the original Version: <br>
 Arduino Mini<br>
 1.3" OLED I2C Display<br>
 3x 6x6x9mm tact buttons<br>
-RX5808 SPI Module<br>
+RX5808 SPI Module: <a href="https://de.aliexpress.com/item/1-ST-CK-RX5808-5-8G-SPI-Open-Source-Diversity-Empf-nger-FPV-AV-RX-modul/32852232709.html?spm=a2g0s.9042311.0.0.27424c4d7NSdLk">Link ></a><br>
 5V stepup U3V12F5<br>
-3.5mm AV socket<br>
-JST-SH 6pin socket<br>
-1s lipo<br>
+3.5mm AV socket: <a href="https://de.aliexpress.com/item/50pcs-PJ-320D-3-5mm-4Pin-Audio-Plug-jack-3-5-3-1-Headset-Headphone-Connector/32828520598.html?spm=a2g0s.9042311.0.0.27424c4dz3Jizb">Link ></a><br>
+JST-SH 6pin socket<br> 
+5v active buzzer SMD: <a href="https://de.aliexpress.com/item/3V-5V-ultra-small-SMD-active-patch-buzzer-9-5mm-9-5mm-5mm-square/1706981111.html?spm=a2g0s.9042311.0.0.27424c4ddocSic">Link ></a><br>
+1s lipo: <a href="https://de.aliexpress.com/item/1-st-cke-3-7-v-500-mah-Lithium-Polymer-Batterie-3-7-v-Volt-503035/32950407438.html?spm=a2g0s.9042311.0.0.27424c4d7NSdLk">Link ></a><br>
 2x 1206 LEDs (D1, D2)<br>
 2x 330 0603 Resistor(R5, R6)<br>
 3x 1k 0603 Resistor (R1, R2, R3)<br>
