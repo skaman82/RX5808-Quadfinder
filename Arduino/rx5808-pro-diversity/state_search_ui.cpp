@@ -80,12 +80,13 @@ void StateMachine::SearchStateHandler::alarmcheck() {
 
       if (AlarmState == LOW) {
         AlarmState = HIGH;
+        digitalWrite(6, LOW);
       }
       else {
         AlarmState = LOW;
+        digitalWrite(6, HIGH);
       }
 
-      // digitalWrite(6, AlarmState);
       digitalWrite(8, AlarmState);
     }
 

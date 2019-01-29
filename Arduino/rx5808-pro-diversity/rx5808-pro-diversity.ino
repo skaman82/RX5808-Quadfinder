@@ -59,7 +59,9 @@ void setup()
 
     // Enable buzzer and LED for duration of setup process.
     digitalWrite(PIN_LED, HIGH);
+    digitalWrite(8, HIGH);
     digitalWrite(PIN_BUZZER, LOW);
+   
 
     setupSettings();
 
@@ -80,6 +82,7 @@ void setup()
     
     // Setup complete.
     digitalWrite(PIN_LED, LOW);
+    digitalWrite(8, LOW);
     digitalWrite(PIN_BUZZER, HIGH);
 
     Buttons::registerChangeFunc(globalMenuButtonHandler);
@@ -90,6 +93,7 @@ void setup()
 
 void setupPins() {
     pinMode(PIN_LED, OUTPUT);
+    pinMode(8, OUTPUT);
     pinMode(PIN_BUZZER, OUTPUT);
     pinMode(PIN_BUTTON_UP, INPUT_PULLUP);
     pinMode(PIN_BUTTON_MODE, INPUT_PULLUP);
